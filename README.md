@@ -60,7 +60,6 @@ terraform-azure-project/
 ├── main.tf                     # Hovedkonfigurasjon som kaller modulene
 ├── variables.tf                # Globale input-variabler
 ├── outputs.tf                  # Outputs fra hovedkonfigurasjonen
-├── terraform.tfvars            # Verdier for variabler
 ├── modules/                    # Mappe for Terraform-moduler
 │   ├── network/                # Nettverksinfrastruktur
 │   │   ├── main.tf
