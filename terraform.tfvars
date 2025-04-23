@@ -1,0 +1,5 @@
+project_name            = "studentproj"
+resource_group_name     = "terraform-demo-rg"
+resource_group_location = "westeurope"
+admin_username          = "azureuser"
+admin_password          = "MySecurePass#123"
