@@ -2,7 +2,7 @@
 
 Dette prosjektet oppretter en komplett infrastruktur i Azure ved hjelp av Terraform.
 
-## 📦 Infrastrukturkomponenter
+## Infrastrukturkomponenter
 
 - 1 Resource Group
 - 1 Virtual Network med to subnets (web og database)
@@ -13,7 +13,7 @@ Dette prosjektet oppretter en komplett infrastruktur i Azure ved hjelp av Terraf
 - Webserver med offentlig IP og åpen port 80
 - SSH-tilgang via port 22
 
-## 🚀 Kom i gang
+## Kom i gang
 
 1. **Installer nødvendige verktøy:**
    - Terraform
@@ -52,7 +52,7 @@ Dette prosjektet oppretter en komplett infrastruktur i Azure ved hjelp av Terraf
    ssh azureuser@<web_public_ip>
    ```
 
-## 🗂️ Mappestruktur
+## Mappestruktur
 
 ```
 terraform-azure-project/
