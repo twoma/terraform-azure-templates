@@ -9,15 +9,15 @@ resource "azurerm_lb" "internal_lb" {
     subnet_id                     = var.subnet_id
     private_ip_address_allocation = "Dynamic"
   }
+}
 
-  backend_address_pool {
-    name = "LB-BackEndPool"
-  }
+resource "azurerm_lb_backend_address_pool" "backend_pool" {
+  name            = "LB-BackEndPool"
+  loadbalancer_id = azurerm_lb.internal_lb.id
 }
 
 resource "azurerm_lb_probe" "mysql_probe" {
   name                = "mysql-healthprobe"
-  resource_group_name = var.resource_group_name
   loadbalancer_id     = azurerm_lb.internal_lb.id
   protocol            = "Tcp"
   port                = 3306
@@ -27,13 +27,12 @@ resource "azurerm_lb_probe" "mysql_probe" {
 
 resource "azurerm_lb_rule" "mysql_lb_rule" {
   name                           = "mysql-rule"
-  resource_group_name            = var.resource_group_name
   loadbalancer_id                = azurerm_lb.internal_lb.id
   protocol                       = "Tcp"
   frontend_port                  = 3306
   backend_port                   = 3306
   frontend_ip_configuration_name = "LB-FrontEnd"
-  backend_address_pool_name      = "LB-BackEndPool"
+  backend_address_pool_ids       = [azurerm_lb_backend_address_pool.backend_pool.id]
   probe_id                       = azurerm_lb_probe.mysql_probe.id
 }
 
@@ -42,5 +41,5 @@ resource "azurerm_network_interface_backend_address_pool_association" "backend_a
 
   network_interface_id    = var.backend_vm_nics[count.index]
   ip_configuration_name   = "ipconfig"
-  backend_address_pool_id = azurerm_lb.internal_lb.backend_address_pool[0].id
+  backend_address_pool_id = azurerm_lb_backend_address_pool.backend_pool.id
 }

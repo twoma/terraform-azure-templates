@@ -8,13 +8,7 @@ resource "azurerm_network_interface" "nic" {
     name                          = "ipconfig"
     subnet_id                     = var.subnet_id
     private_ip_address_allocation = "Dynamic"
-
-    dynamic "public_ip_address" {
-      for_each = var.public_ip ? [1] : []
-      content {
-        id = azurerm_public_ip.public_ip[count.index].id
-      }
-    }
+public_ip_address_id = var.public_ip ? azurerm_public_ip.public_ip[count.index].id : null
   }
 }
 
@@ -23,7 +17,7 @@ resource "azurerm_public_ip" "public_ip" {
   name                = "${var.vm_name}-pubip-${count.index}"
   location            = var.location
   resource_group_name = var.resource_group_name
-  allocation_method   = "Dynamic"
+  allocation_method   = "Static"
   sku                 = "Standard"
 }
 
@@ -32,14 +26,18 @@ resource "azurerm_linux_virtual_machine" "vm" {
   name                = "${var.vm_name}-${count.index}"
   location            = var.location
   resource_group_name = var.resource_group_name
-  network_interface_ids = [
-    azurerm_network_interface.nic[count.index].id
-  ]
-  size = var.vm_size
+  network_interface_ids = [azurerm_network_interface.nic[count.index].id]
+  size                = var.vm_size
 
   admin_username = var.admin_username
-  disable_password_authentication = false
   admin_password = var.admin_password
+  disable_password_authentication = false
+
+  os_disk {
+    name                 = "${var.vm_name}-osdisk-${count.index}"
+    caching              = "ReadWrite"
+    storage_account_type = "Standard_LRS"
+  }
 
   source_image_reference {
     publisher = "Canonical"

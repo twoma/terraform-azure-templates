@@ -60,5 +60,4 @@ module "db_lb" {
   location            = var.resource_group_location
   subnet_id           = module.network.subnet_db_id
   backend_vm_nics     = module.db_vms.nic_ids
-  backend_pool_vm_count = module.db_vms.vm_count
 }
