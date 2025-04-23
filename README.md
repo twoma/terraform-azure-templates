@@ -65,17 +65,14 @@ terraform-azure-project/
 │   │   ├── main.tf
 │   │   ├── variables.tf
 │   │   ├── outputs.tf
-│   │   └── locals.tf
 │   ├── vm/                     # Virtuelle maskiner
 │   │   ├── main.tf
 │   │   ├── variables.tf
 │   │   ├── outputs.tf
-│   │   └── locals.tf
 │   └── loadbalancer/           # Lastbalanserer
 │       ├── main.tf
 │       ├── variables.tf
 │       ├── outputs.tf
-│       └── locals.tf
 └── .github/
     └── workflows/
         └── terraform.yml       # GitHub Actions workflow for automatisk deploy
