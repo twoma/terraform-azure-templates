@@ -1,1 +1,1 @@
-# terraform-azure-templates
+# Dette prosjektet er levert som en del av et arbeidskrav ved Fagskolen Innlandet, og demonstrerer oppsett av en enkel, men sikker og skalerbar infrastruktur i Azure ved hjelp av Terraform.
