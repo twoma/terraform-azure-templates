@@ -24,7 +24,7 @@ Dette prosjektet oppretter en komplett infrastruktur i Azure ved hjelp av Terraf
    az login
    ```
 
-3. **Opprett `terraform.tfvars` med følgende innhold:**
+3. **`terraform.tfvars` inneholder følgende innhold:**
 
    ```hcl
    project_name          = "studentproj"
@@ -51,6 +51,13 @@ Dette prosjektet oppretter en komplett infrastruktur i Azure ved hjelp av Terraf
    ```bash
    ssh azureuser@<web_public_ip>
    ```
+
+7. **Ferdig med testing**
+   ```bash 
+   terraform destory
+   ```
+
+8. **Oppgaven er Ferdig**
 
 ## Mappestruktur
 
