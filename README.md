@@ -82,5 +82,5 @@ terraform-azure-project/
 │       ├── outputs.tf
 └── .github/
     └── workflows/
-        └── terraform.yml       # GitHub Actions workflow for automatisk deploy
+        └── terraform.yml       # GitHub Actions workflow for automatisk deploy - Fungerer ikke som ønsket
 ```
